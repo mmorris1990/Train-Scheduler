@@ -57,23 +57,23 @@ database.ref().on("child_added", function (childSnapshot) {
   var frequency = childSnapshot.val().freq;
 
   //First time
-  var firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+  var trainTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
 
   // Current time
   var currentTime = moment();
 
   // Difference between times
-  var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+  var diffTime = moment().diff(moment(trainTimeConverted), "minutes");
  
   // Time apart (remainder)
-  var tRemainder = diffTime % frequency;
+  var modulus = diffTime % frequency;
 
   // Mins until train
-  var tMinutesTillTrain = frequency - tRemainder;
+  var trainTimeLeft = frequency - modulus;
 
   // Next train
-  var nextTrain = moment().add(tMinutesTillTrain, "minutes").format('LT'); 
+  var nextTrain = moment().add(trainTimeLeft, "minutes").format('LT'); 
 
-  $("#train-table").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrain + "</td><td>" + tMinutesTillTrain + "</td></tr>");
+  $("#train-table").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrain + "</td><td>" + trainTimeLeft + "</td></tr>");
 
 });
