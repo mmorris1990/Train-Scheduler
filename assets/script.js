@@ -33,10 +33,6 @@ $("#add-train-btn").on("click", function () {
   database.ref().push(newTrain);
 
     console.log(newTrain);
-  // console.log(newTrain.name);
-  // console.log(newTrain.dest);
-  // console.log(newTrain.first);
-  // console.log(newTrain.freq);
 
   // Clears all of the text-boxes
   $("#train-name").val("");
